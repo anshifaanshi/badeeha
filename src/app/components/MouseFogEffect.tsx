@@ -2,12 +2,6 @@
 
 import React, { useEffect, useRef } from "react";
 
-/**
- * MouseFogEffect - TypeScript Version
- * ─────────────
- * Warm-amber fog + custom orange dot cursor.
- */
-
 interface Particle {
   x: number;
   y: number;
@@ -27,6 +21,9 @@ export default function MouseFogEffect(): React.JSX.Element {
   const dotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // 1. Ensure we are on the client
+    if (typeof window === "undefined") return;
+
     const canvas = canvasRef.current;
     const dot = dotRef.current;
     if (!canvas || !dot) return;
@@ -35,9 +32,12 @@ export default function MouseFogEffect(): React.JSX.Element {
     if (!ctx) return;
 
     let rafId: number;
+    let isMounted = true;
 
     // ── State ────────────────────────────────────────────────────────────
-    let W: number, H: number, dpr: number;
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+    let dpr = window.devicePixelRatio || 1;
 
     const setCanvasSize = () => {
       W = window.innerWidth;
@@ -54,16 +54,14 @@ export default function MouseFogEffect(): React.JSX.Element {
 
     setCanvasSize();
 
-    // Raw mouse
+    // Initial positions
     let mouseX = W / 2;
     let mouseY = H / 2;
-    // Lerped positions
     let fogX = mouseX;
     let fogY = mouseY;
     let dotX = mouseX;
     let dotY = mouseY;
 
-    // Speed tracking
     let prevFogX = fogX;
     let prevFogY = fogY;
     let speed = 0;
@@ -71,7 +69,6 @@ export default function MouseFogEffect(): React.JSX.Element {
 
     const particles: Particle[] = [];
 
-    // ── Helpers ──────────────────────────────────────────────────────────
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
     const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
 
@@ -95,38 +92,10 @@ export default function MouseFogEffect(): React.JSX.Element {
       });
     }
 
-    function drawParticle(p: Particle) {
-      const safeR = Math.max(0.1, p.r);
-      const grad = ctx!.createRadialGradient(p.x, p.y, 0, p.x, p.y, safeR);
-      grad.addColorStop(0, `rgba(255,160,60,${p.opacity})`);
-      grad.addColorStop(0.4, `rgba(251,120,20,${p.opacity * 0.5})`);
-      grad.addColorStop(1, `rgba(249,115,22,0)`);
-      
-      ctx!.beginPath();
-      ctx!.arc(p.x, p.y, safeR, 0, Math.PI * 2);
-      ctx!.fillStyle = grad;
-      ctx!.fill();
-    }
-
-    function drawFogAura(x: number, y: number, spd: number) {
-      const radius = clamp(spd * 5 + 80, 80, 260);
-      const alpha = clamp(0.04 + spd * 0.003, 0.04, 0.11);
-      const grad = ctx!.createRadialGradient(x, y, 0, x, y, radius);
-      
-      grad.addColorStop(0, `rgba(255,170,80,${alpha})`);
-      grad.addColorStop(0.35, `rgba(251,130,30,${alpha * 0.55})`);
-      grad.addColorStop(0.7, `rgba(249,115,22,${alpha * 0.20})`);
-      grad.addColorStop(1, `rgba(249,115,22,0)`);
-      
-      ctx!.beginPath();
-      ctx!.arc(x, y, radius, 0, Math.PI * 2);
-      ctx!.fillStyle = grad;
-      ctx!.fill();
-    }
-
-    // ── Main loop ─────────────────────────────────────────────────────────
     function tick() {
-      ctx!.clearRect(0, 0, W, H);
+      if (!isMounted || !ctx) return;
+
+      ctx.clearRect(0, 0, W, H);
 
       fogX = lerp(fogX, mouseX, 0.072);
       fogY = lerp(fogY, mouseY, 0.072);
@@ -140,7 +109,19 @@ export default function MouseFogEffect(): React.JSX.Element {
       prevFogY = fogY;
 
       if (hasMoved || speed > 0.1) {
-        drawFogAura(fogX, fogY, speed);
+        // Draw Large Aura
+        const radius = clamp(speed * 5 + 80, 80, 260);
+        const alpha = clamp(0.04 + speed * 0.003, 0.04, 0.11);
+        const grad = ctx.createRadialGradient(fogX, fogY, 0, fogX, fogY, radius);
+        grad.addColorStop(0, `rgba(255,170,80,${alpha})`);
+        grad.addColorStop(0.35, `rgba(251,130,30,${alpha * 0.55})`);
+        grad.addColorStop(0.7, `rgba(249,115,22,${alpha * 0.20})`);
+        grad.addColorStop(1, `rgba(249,115,22,0)`);
+        ctx.beginPath();
+        ctx.arc(fogX, fogY, radius, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
         const spawnCount = Math.floor(clamp(speed * 0.5, 0.3, 3));
         for (let i = 0; i < spawnCount; i++) spawnParticle(fogX, fogY, speed);
       }
@@ -166,10 +147,21 @@ export default function MouseFogEffect(): React.JSX.Element {
           particles.splice(i, 1);
           continue;
         }
-        drawParticle(p);
+
+        const safeR = Math.max(0.1, p.r);
+        const pGrad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, safeR);
+        pGrad.addColorStop(0, `rgba(255,160,60,${p.opacity})`);
+        pGrad.addColorStop(0.4, `rgba(251,120,20,${p.opacity * 0.5})`);
+        pGrad.addColorStop(1, `rgba(249,115,22,0)`);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, safeR, 0, Math.PI * 2);
+        ctx.fillStyle = pGrad;
+        ctx.fill();
       }
 
-      dot!.style.transform = `translate3d(${dotX - 5}px, ${dotY - 5}px, 0)`;
+      if (dot) {
+        dot.style.transform = `translate3d(${dotX - 5}px, ${dotY - 5}px, 0)`;
+      }
 
       rafId = requestAnimationFrame(tick);
     }
@@ -188,10 +180,10 @@ export default function MouseFogEffect(): React.JSX.Element {
 
     window.addEventListener("mousemove", onMouseMove, { passive: true });
     window.addEventListener("resize", setCanvasSize);
-
     rafId = requestAnimationFrame(tick);
 
     return () => {
+      isMounted = false;
       cancelAnimationFrame(rafId);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("resize", setCanvasSize);
@@ -200,11 +192,14 @@ export default function MouseFogEffect(): React.JSX.Element {
 
   return (
     <>
-      <style>{`
-        html, body, * { 
+      {/* 
+        Fixed Hydration Error: Use dangerouslySetInnerHTML for style tags 
+        containing global selectors in Next.js 
+      */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        html, body, a, button { 
           cursor: none !important; 
         }
-
         #cursor-dot {
           position: fixed;
           top: 0;
@@ -218,7 +213,6 @@ export default function MouseFogEffect(): React.JSX.Element {
           will-change: transform;
           box-shadow: 0 0 8px rgba(249,115,22,0.9), 0 0 18px rgba(249,115,22,0.45);
         }
-
         #fog-canvas {
           position: fixed;
           top: 0;
@@ -227,7 +221,7 @@ export default function MouseFogEffect(): React.JSX.Element {
           z-index: 9998;
           mix-blend-mode: screen;
         }
-      `}</style>
+      `}} />
 
       <canvas ref={canvasRef} id="fog-canvas" aria-hidden="true" />
       <div ref={dotRef} id="cursor-dot" aria-hidden="true" />
