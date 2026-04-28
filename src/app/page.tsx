@@ -2,6 +2,7 @@
 import HeroSection from './HeroSection'
 import Navbar from './components/Navbar';
 import MouseFogEffect from './components/MouseFogEffect';
+import ScrollServices from './hero/Service';
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <MouseFogEffect/>
       <Navbar/>
     <HeroSection/>
+    <ScrollServices/>
     </div>
   );
 }
