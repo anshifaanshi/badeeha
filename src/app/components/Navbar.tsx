@@ -383,8 +383,8 @@ export default function Navbar() {
 
           {/* Logo */}
           <a href="#home" className="nav-logo" aria-label="AutoPro Home">
-            <span className="nav-logo-icon" aria-hidden="true">A</span>
-            AutoPro
+            <span className="nav-logo-icon" aria-hidden="true">B</span>
+            Badeeha
           </a>
 
           {/* Desktop links */}
