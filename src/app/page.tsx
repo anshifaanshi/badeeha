@@ -5,6 +5,9 @@ import MouseFogEffect from './components/MouseFogEffect';
 import ScrollServices from './hero/Service';
 import StatsBar from './hero/StatsBar';
 import ServicesGrid from './hero/ServiceGrid';
+import AboutUs from './hero/About';
+import BookingForm from './hero/BookingForm';
+import Footer from './components/Footer';
 
 export default function Home() {
   return (
@@ -15,6 +18,9 @@ export default function Home() {
     <StatsBar/>
     <ScrollServices/>
     <ServicesGrid/>
+    <AboutUs/>
+    <BookingForm/>
+    <Footer/>
     </div>
   );
 }
