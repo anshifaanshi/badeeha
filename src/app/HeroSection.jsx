@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -146,9 +145,35 @@ export default function HeroSection() {
         }
         .scroll-hint { animation: bounce 2.2s ease-in-out infinite; }
 
+        /* ── Responsive ── */
+        .badge-strip { display: flex; gap: 10px; justify-content: center; margin-bottom: 44px; }
+        .cta-row     { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+        /* Tablet */
+        @media (min-width: 641px) and (max-width: 1024px) {
+          .badge-strip { flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+        }
+
+        /* Phone — all phones ≤ 640px wide */
         @media (max-width: 640px) {
-          .badge-strip { flex-wrap: wrap; justify-content: center; }
-          .cta-row { flex-direction: column; align-items: center; }
+          .badge-strip  { flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+          .cta-row      { flex-direction: column; align-items: center; width: 100%; gap: 10px; }
+          .cta-primary,
+          .cta-secondary { width: 100%; justify-content: center; padding: 13px 20px; font-size: 0.75rem; }
+          .scroll-hint  { display: none; }
+          .badge        { font-size: 0.62rem; padding: 5px 10px; }
+        }
+
+        /* Galaxy S8 and very narrow phones ≤ 370px */
+        @media (max-width: 370px) {
+          .badge-strip  { display: none; }
+          .cta-primary,
+          .cta-secondary { padding: 12px 16px; font-size: 0.72rem; }
+        }
+
+        /* Short phones — landscape or small height */
+        @media (max-width: 640px) and (max-height: 700px) {
+          .badge-strip { display: none; }
         }
       `}</style>
 
@@ -157,7 +182,7 @@ export default function HeroSection() {
           position: "relative",
           width: "100%",
           height: "100svh",
-          minHeight: "600px",
+          minHeight: "560px",
           overflow: "hidden",
           display: "flex",
           alignItems: "center",
@@ -203,7 +228,7 @@ export default function HeroSection() {
             position: "relative",
             zIndex: 3,
             textAlign: "center",
-            padding: "0 24px",
+            padding: "0 clamp(12px, 4vw, 24px)",
             maxWidth: "900px",
             width: "100%",
           }}
@@ -213,11 +238,11 @@ export default function HeroSection() {
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontWeight: 500,
-              fontSize: "clamp(0.68rem, 1.4vw, 0.78rem)",
+              fontSize: "clamp(0.6rem, 1.4vw, 0.78rem)",
               letterSpacing: "0.26em",
               textTransform: "uppercase",
               color: "#f97316",
-              marginBottom: "18px",
+              marginBottom: "clamp(8px, 2vw, 18px)",
             }}
           >
             ✦ Professional Auto Services
@@ -228,10 +253,10 @@ export default function HeroSection() {
             style={{
               fontFamily: "'Playfair Display', Georgia, serif",
               fontWeight: 900,
-              fontSize: "clamp(2.6rem, 7.5vw, 5.8rem)",
+              fontSize: "clamp(1.7rem, 7.5vw, 5.8rem)",
               lineHeight: 1.06,
               color: "#ffffff",
-              marginBottom: "26px",
+              marginBottom: "clamp(10px, 3vw, 26px)",
               textShadow: "0 4px 32px rgba(0,0,0,0.5)",
               letterSpacing: "-0.01em",
             }}
@@ -248,11 +273,11 @@ export default function HeroSection() {
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontWeight: 300,
-              fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
-              lineHeight: 1.75,
+              fontSize: "clamp(0.82rem, 2.2vw, 1.2rem)",
+              lineHeight: 1.65,
               color: "rgba(255,255,255,0.82)",
               maxWidth: "600px",
-              margin: "0 auto 36px",
+              margin: "0 auto clamp(14px, 4vw, 36px)",
             }}
           >
             From expert car lifting &amp; body facelifts to deep interior
@@ -261,15 +286,7 @@ export default function HeroSection() {
           </p>
 
           {/* Service badges */}
-          <div
-            className="badge-strip anim-fade-in delay-600"
-            style={{
-              display: "flex",
-              gap: "10px",
-              justifyContent: "center",
-              marginBottom: "44px",
-            }}
-          >
+          <div className="badge-strip anim-fade-in delay-600">
             {["Car Lifting", "Body Facelift", "Interior Cleaning", "Accessories"].map(
               (label) => (
                 <span key={label} className="badge">
@@ -281,10 +298,7 @@ export default function HeroSection() {
           </div>
 
           {/* CTA Buttons */}
-          <div
-            className="cta-row anim-fade-in delay-800"
-            style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}
-          >
+          <div className="cta-row anim-fade-in delay-800">
             <a href="#services" className="cta-primary">
               Explore Services
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">

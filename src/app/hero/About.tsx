@@ -64,7 +64,7 @@ export default function AboutUs() {
             className="dm-sans text-[9px] tracking-[0.5em] uppercase text-orange-500/60 font-bold"
             style={{ writingMode: "vertical-rl" }}
           >
-            Adeeha Auto
+            BAdeeha Auto
           </p>
           <div className="w-[1px] h-16 bg-orange-500/30" />
         </div>
@@ -160,7 +160,7 @@ export default function AboutUs() {
           What Drives Us
         </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 max-w-6xl mx-auto w-full">
           {VALUES.map((val, i) => (
             <motion.div
               key={i}
@@ -168,13 +168,14 @@ export default function AboutUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: i * 0.15 }}
-              className={`group py-10 pr-10 ${
+              className={`group py-10 px-8 text-center flex flex-col items-center ${
                 i < VALUES.length - 1
                   ? "border-b border-white/5 md:border-b-0 md:border-r md:border-white/5"
                   : ""
-              } ${i > 0 ? "md:pl-10" : ""}`}
+              }`}
             >
-              <div className="flex items-center gap-4 mb-6">
+              <div className="flex items-center gap-4 mb-6 w-full">
+                <div className="flex-1 h-[1px] bg-orange-500/20 group-hover:bg-orange-500/50 transition-colors duration-500" />
                 <span className="font-mono text-[10px] tracking-[0.3em] text-orange-500 font-bold">
                   {val.index}
                 </span>
