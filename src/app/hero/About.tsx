@@ -107,7 +107,11 @@ export default function AboutUs() {
 
         {/* Animated divider */}
         <div className="w-full h-[1px] mb-10 overflow-hidden" style={{ background: "#e5e5e5" }}>
-          <motion.div style={{ width: lineWidth }} className="h-full" css={{ background: "rgba(255,102,0,0.5)" }} />
+          {/* FIX APPLIED HERE: background moved into style object */}
+          <motion.div 
+            style={{ width: lineWidth, background: "rgba(255,102,0,0.5)" }} 
+            className="h-full" 
+          />
         </div>
 
         {/* Description */}
@@ -146,8 +150,6 @@ export default function AboutUs() {
         className="relative w-full px-6 sm:px-12 md:px-20 flex flex-col items-center"
         style={{ background: "#f7f7f7", paddingTop: "96px", paddingBottom: "120px" }}
       >
-
-        {/* Ambient glow */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-[20%] left-[30%] w-[40%] h-[40%] rounded-full bg-orange-500/5 blur-[100px]" />
         </div>
