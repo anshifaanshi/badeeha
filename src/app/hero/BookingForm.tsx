@@ -79,9 +79,9 @@ export default function BookingForm() {
         `,
       }} />
 
-      <div className="relative w-full min-h-screen flex flex-col items-center justify-center px-6 sm:px-16 md:px-24 py-28 md:py-36">
+      <div className="relative w-full min-h-screen flex flex-col items-center justify-center px-5 sm:px-16 md:px-24 py-20 sm:py-28 md:py-36">
 
-        {/* Decorative vertical text */}
+        {/* Decorative vertical text — hidden on mobile */}
         <div className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-3">
           <div className="w-[1px] h-16 bg-orange-500/30" />
           <p className="dm-sans text-[9px] tracking-[0.5em] uppercase text-orange-500/60 font-bold"
@@ -105,29 +105,31 @@ export default function BookingForm() {
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="dm-sans text-[10px] tracking-[0.5em] uppercase text-orange-500 font-bold mb-8 text-center"
+                className="dm-sans text-[10px] tracking-[0.5em] uppercase text-orange-500 font-bold mb-6 sm:mb-8 text-center"
               >
                 Reserve Your Slot
               </motion.p>
 
-              <div className="overflow-hidden mb-3 text-center">
+              <div className="overflow-hidden mb-2 sm:mb-3 text-center">
                 <motion.h2
                   initial={{ y: "100%" }}
                   whileInView={{ y: "0%" }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="bebas-font text-white leading-[0.88] tracking-tighter text-[clamp(3.5rem,12vw,8rem)]"
+                  className="bebas-font text-white leading-[0.88] tracking-tighter"
+                  style={{ fontSize: "clamp(2.8rem, 12vw, 8rem)" }}
                 >
                   Book A
                 </motion.h2>
               </div>
-              <div className="overflow-hidden mb-16 text-center">
+              <div className="overflow-hidden mb-10 sm:mb-14 md:mb-16 text-center">
                 <motion.h2
                   initial={{ y: "100%" }}
                   whileInView={{ y: "0%" }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
-                  className="bebas-font text-orange-500 leading-[0.88] tracking-tighter text-[clamp(3.5rem,12vw,8rem)]"
+                  className="bebas-font text-orange-500 leading-[0.88] tracking-tighter"
+                  style={{ fontSize: "clamp(2.8rem, 12vw, 8rem)" }}
                 >
                   Service
                 </motion.h2>
@@ -139,7 +141,7 @@ export default function BookingForm() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10"
+                className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 sm:gap-y-10"
               >
                 <Field label="Full Name" active={focused === "name"}>
                   <input type="text" value={form.name}
@@ -188,20 +190,20 @@ export default function BookingForm() {
               </motion.div>
 
               {/* Divider + Submit */}
-              <div className="w-full h-[1px] bg-white/5 mt-14 mb-8" />
+              <div className="w-full h-[1px] bg-white/5 mt-10 sm:mt-14 mb-6 sm:mb-8" />
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row items-center justify-between gap-6"
+                className="flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6"
               >
                 <p className="dm-sans text-zinc-600 text-xs tracking-widest uppercase text-center sm:text-left">
                   We'll confirm within 24 hours.
                 </p>
                 <button type="button" onClick={handleSubmit}
-                  className="dm-sans group inline-flex items-center gap-4 border border-white/20 rounded-full px-10 py-4 text-sm font-bold tracking-[0.2em] uppercase text-white hover:bg-orange-500 hover:border-orange-500 transition-all duration-300 whitespace-nowrap">
+                  className="dm-sans group inline-flex items-center gap-4 border border-white/20 rounded-full px-8 sm:px-10 py-3.5 sm:py-4 text-sm font-bold tracking-[0.2em] uppercase text-white hover:bg-orange-500 hover:border-orange-500 transition-all duration-300 whitespace-nowrap w-full sm:w-auto justify-center">
                   Confirm Booking
                   <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </button>
@@ -214,10 +216,10 @@ export default function BookingForm() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full max-w-xl flex flex-col items-center text-center gap-10"
+              className="w-full max-w-xl flex flex-col items-center text-center gap-8 sm:gap-10 px-2"
             >
-              <div className="w-20 h-20 rounded-full border border-orange-500/30 flex items-center justify-center">
-                <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-orange-500/30 flex items-center justify-center">
+                <svg viewBox="0 0 40 40" className="w-7 h-7 sm:w-8 sm:h-8" fill="none">
                   <motion.path d="M8 20 L16 28 L32 12"
                     stroke="rgb(249 115 22)" strokeWidth="2.5"
                     strokeLinecap="round" strokeLinejoin="round"
@@ -226,11 +228,12 @@ export default function BookingForm() {
                 </svg>
               </div>
 
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3 sm:gap-4">
                 <p className="dm-sans text-[10px] tracking-[0.5em] uppercase text-orange-500 font-bold">
                   Booking Received
                 </p>
-                <h2 className="bebas-font text-white text-[clamp(2.5rem,8vw,5rem)] leading-none tracking-tight">
+                <h2 className="bebas-font text-white leading-none tracking-tight"
+                  style={{ fontSize: "clamp(2.2rem, 8vw, 5rem)" }}>
                   See You Soon,<br />
                   <span className="text-orange-500">{form.name.split(" ")[0]}</span>
                 </h2>
@@ -241,7 +244,7 @@ export default function BookingForm() {
               </div>
 
               <button type="button" onClick={() => { setForm(EMPTY); setSubmitted(false); }}
-                className="dm-sans group inline-flex items-center gap-4 border border-white/20 rounded-full px-10 py-4 text-sm font-bold tracking-[0.2em] uppercase text-white hover:bg-orange-500 hover:border-orange-500 transition-all duration-300">
+                className="dm-sans group inline-flex items-center gap-4 border border-white/20 rounded-full px-8 sm:px-10 py-3.5 sm:py-4 text-sm font-bold tracking-[0.2em] uppercase text-white hover:bg-orange-500 hover:border-orange-500 transition-all duration-300 w-full sm:w-auto justify-center">
                 Book Another
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </button>

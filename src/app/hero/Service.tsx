@@ -202,12 +202,8 @@ export default function ScrollServices() {
 
               {/* Bottom footer */}
               <div className="flex items-center justify-between mt-auto pt-6">
-                <span className="dm-sans text-[10px] tracking-[0.3em] uppercase text-white/25">
-                  Scroll to explore ↓
-                </span>
-                <span className="dm-sans text-[10px] tracking-[0.3em] uppercase text-orange-500/50">
-                  Est. 2019
-                </span>
+              
+               
               </div>
             </div>
 

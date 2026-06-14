@@ -245,7 +245,7 @@ export default function HeroSection() {
               marginBottom: "clamp(8px, 2vw, 18px)",
             }}
           >
-            ✦ Professional Auto Services
+            ✦ UpHolsery WOrks
           </p>
 
           <h1

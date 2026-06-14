@@ -9,7 +9,6 @@ const SERVICES = [
     index: "01",
     title: "Nano Ceramic",
     description: "Advanced surface protection technology for a lasting mirror-like finish.",
-    // car ceramic coating gloved hand applying product
     image: "https://images.unsplash.com/photo-1606577924006-27d39b132ae2?w=900&q=80",
     span: "large-left",
   },
@@ -18,7 +17,6 @@ const SERVICES = [
     index: "02",
     title: "Car Polishing",
     description: "Professional paint correction and gloss enhancement for showroom results.",
-    // person polishing red car with machine
     image: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=900&q=80",
     span: "small",
   },
@@ -27,7 +25,6 @@ const SERVICES = [
     index: "03",
     title: "Interior Cleaning",
     description: "Deep sanitization and premium detailing for every surface inside your vehicle.",
-    // vacuuming car interior seat
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80",
     span: "small",
   },
@@ -36,7 +33,6 @@ const SERVICES = [
     index: "04",
     title: "Glass Tinting",
     description: "Heat rejection and privacy with professionally installed premium films.",
-    // tinting car window film install
     image: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=900&q=80",
     span: "small",
   },
@@ -70,7 +66,7 @@ export default function ServicesGrid() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <section style={{ background: "#030303", width: "100%", padding: "80px 40px", borderTop: "none", outline: "none" }}>
+    <section style={{ background: "#ffffff", width: "100%", padding: "80px 40px", borderTop: "none", outline: "none" }}>
       <style dangerouslySetInnerHTML={{ __html: `
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,700;1,300&display=swap');
         .bebas-font { font-family: 'Bebas Neue', sans-serif; }
@@ -92,7 +88,7 @@ export default function ServicesGrid() {
           gap: 10px;
           max-width: 1400px;
           margin: 0 auto;
-          background: #030303;
+          background: #ffffff;
         }
 
         .sg-card {
@@ -190,7 +186,7 @@ export default function ServicesGrid() {
         }
       `}} />
 
-      {/* Header — matches ScrollServices branding style */}
+      {/* Header */}
       <div className="sg-header">
         <div>
           <p
@@ -201,23 +197,17 @@ export default function ServicesGrid() {
           </p>
           <h2
             className="bebas-font"
-            style={{ fontSize: "clamp(2.8rem,5vw,4.5rem)", color: "#fff", lineHeight: 0.9, textTransform: "uppercase" }}
+            style={{ fontSize: "clamp(2.8rem,5vw,4.5rem)", color: "#111111", lineHeight: 0.9, textTransform: "uppercase" }}
           >
             Our Services
           </h2>
         </div>
-       
       </div>
 
       {/* Bento Grid */}
       <div className="sg-grid">
 
-        {/* Large Left — Nano Ceramic */}
-        <div
-          className="sg-card sg-card-large-left"
-          onMouseEnter={() => setHovered(1)}
-          onMouseLeave={() => setHovered(null)}
-        >
+        <div className="sg-card sg-card-large-left" onMouseEnter={() => setHovered(1)} onMouseLeave={() => setHovered(null)}>
           <img src={SERVICES[0].image} alt={SERVICES[0].title} />
           <div className="sg-overlay" />
           <div className="sg-content">
@@ -227,12 +217,7 @@ export default function ServicesGrid() {
           </div>
         </div>
 
-        {/* Small — Car Polishing */}
-        <div
-          className="sg-card sg-card-s1"
-          onMouseEnter={() => setHovered(2)}
-          onMouseLeave={() => setHovered(null)}
-        >
+        <div className="sg-card sg-card-s1" onMouseEnter={() => setHovered(2)} onMouseLeave={() => setHovered(null)}>
           <img src={SERVICES[1].image} alt={SERVICES[1].title} />
           <div className="sg-overlay" />
           <div className="sg-content">
@@ -242,12 +227,7 @@ export default function ServicesGrid() {
           </div>
         </div>
 
-        {/* Small — Interior Cleaning */}
-        <div
-          className="sg-card sg-card-s2"
-          onMouseEnter={() => setHovered(3)}
-          onMouseLeave={() => setHovered(null)}
-        >
+        <div className="sg-card sg-card-s2" onMouseEnter={() => setHovered(3)} onMouseLeave={() => setHovered(null)}>
           <img src={SERVICES[2].image} alt={SERVICES[2].title} />
           <div className="sg-overlay" />
           <div className="sg-content">
@@ -257,12 +237,7 @@ export default function ServicesGrid() {
           </div>
         </div>
 
-        {/* Small — Glass Tinting */}
-        <div
-          className="sg-card sg-card-s3"
-          onMouseEnter={() => setHovered(4)}
-          onMouseLeave={() => setHovered(null)}
-        >
+        <div className="sg-card sg-card-s3" onMouseEnter={() => setHovered(4)} onMouseLeave={() => setHovered(null)}>
           <img src={SERVICES[3].image} alt={SERVICES[3].title} />
           <div className="sg-overlay" />
           <div className="sg-content">
@@ -272,12 +247,7 @@ export default function ServicesGrid() {
           </div>
         </div>
 
-        {/* Large Right — PPF */}
-        <div
-          className="sg-card sg-card-large-right"
-          onMouseEnter={() => setHovered(5)}
-          onMouseLeave={() => setHovered(null)}
-        >
+        <div className="sg-card sg-card-large-right" onMouseEnter={() => setHovered(5)} onMouseLeave={() => setHovered(null)}>
           <img src={SERVICES[4].image} alt={SERVICES[4].title} />
           <div className="sg-overlay" />
           <div className="sg-content">
@@ -287,12 +257,7 @@ export default function ServicesGrid() {
           </div>
         </div>
 
-        {/* Half Left — Face Lift */}
-        <div
-          className="sg-card sg-card-half-left"
-          onMouseEnter={() => setHovered(6)}
-          onMouseLeave={() => setHovered(null)}
-        >
+        <div className="sg-card sg-card-half-left" onMouseEnter={() => setHovered(6)} onMouseLeave={() => setHovered(null)}>
           <img src={SERVICES[5].image} alt={SERVICES[5].title} />
           <div className="sg-overlay" />
           <div className="sg-content">
@@ -302,12 +267,7 @@ export default function ServicesGrid() {
           </div>
         </div>
 
-        {/* Half Right — Upholstery Work */}
-        <div
-          className="sg-card sg-card-half-right"
-          onMouseEnter={() => setHovered(7)}
-          onMouseLeave={() => setHovered(null)}
-        >
+        <div className="sg-card sg-card-half-right" onMouseEnter={() => setHovered(7)} onMouseLeave={() => setHovered(null)}>
           <img src={SERVICES[6].image} alt={SERVICES[6].title} />
           <div className="sg-overlay" />
           <div className="sg-content">

@@ -8,7 +8,7 @@ import ServicesGrid from './hero/ServiceGrid';
 import AboutUs from './hero/About';
 import BookingForm from './hero/BookingForm';
 import Footer from './components/Footer';
-
+import Testimonials from './hero/Testimonials';
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
@@ -16,6 +16,7 @@ export default function Home() {
       <Navbar/>
     <HeroSection/>
     <StatsBar/>
+<Testimonials/>
     <ScrollServices/>
     <ServicesGrid/>
     <AboutUs/>
