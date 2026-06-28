@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const VIDEOS = ["/carfacelifting.mp4", "/cartransition.mp4"];
+const VIDEOS = ["/carfacelifting.mp4", "/cartransition.mp4","/cartinting.mp4.mp4","/carinterior.mp4.mp4"];
 const FADE_MS = 2500;
 const HOLD_MS = 6000;
 
@@ -287,7 +287,7 @@ export default function HeroSection() {
 
           {/* Service badges */}
           <div className="badge-strip anim-fade-in delay-600">
-            {["Car Lifting", "Body Facelift", "Interior Cleaning", "Accessories"].map(
+            {["UpHolsery&accessories", "Body polishing","Interior Cleaning", "Tinting",].map(
               (label) => (
                 <span key={label} className="badge">
                   <span className="badge-dot" />

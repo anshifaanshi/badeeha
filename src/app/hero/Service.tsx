@@ -1,17 +1,73 @@
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
-import { useScroll, useTransform, motion, AnimatePresence } from "framer-motion";
+import { useScroll, motion, AnimatePresence } from "framer-motion";
 
 const SERVICES = [
-  { id: 2, index: "02", title: "Interior Cleaning",   description: "Deep sanitization and premium detailing for every surface inside your vehicle." },
-  { id: 3, index: "03", title: "Glass Tinting",       description: "Heat rejection and privacy with professionally installed premium films." },
-  { id: 4, index: "04", title: "Car Accessories",     description: "Bespoke additions to enhance and personalise your driving experience." },
-  { id: 5, index: "05", title: "PPF / Ceramic Works", description: "Ultimate paint protection film and long-lasting ceramic coatings." },
-  { id: 6, index: "06", title: "Face Lift",           description: "Modern aesthetic upgrades and precision body kit styling." },
-  { id: 7, index: "07", title: "Upholstery Work",     description: "Premium leather restoration and custom interior stitching by hand." },
-  { id: 8, index: "08", title: "Nano Ceramic",        description: "Advanced surface protection technology for a lasting mirror-like finish." },
-  { id: 9, index: "09", title: "Car Polishing",       description: "Professional paint correction and gloss enhancement for showroom results." },
+  {
+    id: 2,
+    index: "02",
+    title: "Interior Cleaning",
+    description: "Deep sanitization and premium detailing for every surface inside your vehicle.",
+    // Person vacuuming / cleaning car interior
+    image: "https://i.postimg.cc/C1QLLK8r/Gemini-Generated-Image-xzkgg1xzkgg1xzkg.png",
+  },
+  {
+    id: 3,
+    index: "03",
+    title: "Glass Tinting",
+    description: "Heat rejection and privacy with professionally installed premium films.",
+    // Dark tinted car window close-up
+    image: "https://i.postimg.cc/wTJJZK8j/Gemini-Generated-Image-bv1hvzbv1hvzbv1h.png",
+  },
+  {
+    id: 4,
+    index: "04",
+    title: "Car Accessories",
+    description: "Bespoke additions to enhance and personalise your driving experience.",
+    // Luxury Porsche / premium car accessories angle
+    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1400&q=85&fit=crop",
+  },
+  {
+    id: 5,
+    index: "05",
+    title: "PPF / Ceramic Works",
+    description: "Ultimate paint protection film and long-lasting ceramic coatings.",
+    // PPF vinyl wrap being applied on car panel
+    image: "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=1400&q=85&fit=crop",
+  },
+  {
+    id: 6,
+    index: "06",
+    title: "Face Lift",
+    description: "Modern aesthetic upgrades and precision body kit styling.",
+    // Aggressive sporty car front angle / body kit
+    image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1400&q=85&fit=crop",
+  },
+  {
+    id: 7,
+    index: "07",
+    title: "Upholstery Work",
+    description: "Premium leather restoration and custom interior stitching by hand.",
+    // Luxury leather car seat close-up stitching
+    image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1400&q=85&fit=crop",
+  },
+  {
+    id: 8,
+    index: "08",
+    title: "Nano Ceramic",
+    description: "Advanced surface protection technology for a lasting mirror-like finish.",
+    // Ultra-glossy mirror-like car paint reflection
+    image: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?w=1400&q=85&fit=crop",
+  },
+  {
+    id: 9,
+    index: "09",
+    title: "Car Polishing",
+    description: "Professional paint correction and gloss enhancement for showroom results.",
+    // Polishing/buffing machine being used on car hood
+    image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1400&q=85&fit=crop",
+  },
 ];
 
 const TOTAL = SERVICES.length;
@@ -45,7 +101,45 @@ function ServiceCard({ service }: { service: (typeof SERVICES)[0] }) {
       <p className="dm-sans text-white/45 font-light italic leading-relaxed text-[clamp(0.9rem,1.5vw,1.05rem)] max-w-sm mb-9">
         {service.description}
       </p>
+    </motion.div>
+  );
+}
 
+// ─────────────────────────────────────────────
+// Sub-Component: Service Image (full-bleed bg)
+// ─────────────────────────────────────────────
+function ServiceImage({ service }: { service: (typeof SERVICES)[0] }) {
+  return (
+    <motion.div
+      key={service.id}
+      initial={{ opacity: 0, scale: 1.04 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.97 }}
+      transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
+      className="absolute inset-0"
+    >
+      <img
+        src={service.image}
+        alt={service.title}
+        className="w-full h-full object-cover"
+        style={{ filter: "brightness(0.5) saturate(0.8)" }}
+      />
+      {/* Left-to-right fade: blends image into left panel */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to right, rgba(3,3,3,1) 0%, rgba(3,3,3,0.75) 35%, rgba(3,3,3,0.15) 70%, rgba(3,3,3,0.05) 100%)",
+        }}
+      />
+      {/* Bottom fade for depth */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(3,3,3,0.65) 0%, transparent 45%)",
+        }}
+      />
     </motion.div>
   );
 }
@@ -82,8 +176,6 @@ export default function ScrollServices() {
     setCurrent(next);
   }, [current]);
 
-  const progressWidth = `${((current + 1) / TOTAL) * 100}%`;
-
   return (
     <section className="w-full" style={{ background: "#030303" }}>
       <style dangerouslySetInnerHTML={{ __html: `
@@ -97,8 +189,15 @@ export default function ScrollServices() {
         {mounted && (
           <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex" style={{ background: "rgba(0,0,0,0.72)" }}>
 
+            {/* ── Full-bleed background image per service ── */}
+            <div className="absolute inset-0 z-0">
+              <AnimatePresence mode="wait">
+                <ServiceImage key={current} service={SERVICES[current]} />
+              </AnimatePresence>
+            </div>
+
             {/* ── Ambient orbs ── */}
-            <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-0 pointer-events-none z-10">
               <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-orange-600/7 blur-[120px]" />
               <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-orange-800/5 blur-[100px]" />
             </div>
@@ -106,12 +205,10 @@ export default function ScrollServices() {
             {/* ══════════════════════════════
                 LEFT PANEL
             ══════════════════════════════ */}
-            <div className="relative w-[42%] flex flex-col justify-between px-10 py-12 shrink-0 items-center">
+            <div className="relative z-20 w-[42%] flex flex-col justify-between px-10 py-12 shrink-0 items-center">
 
               {/* Top branding */}
-              <div className="flex flex-col gap-1 w-full">
-               
-              </div>
+              <div className="flex flex-col gap-1 w-full" />
 
               {/* Counter — centered */}
               <div className="py-10 flex flex-col items-center text-center">
@@ -166,14 +263,12 @@ export default function ScrollServices() {
                   />
                 ))}
               </div>
-
-
             </div>
 
             {/* ══════════════════════════════
                 RIGHT PANEL
             ══════════════════════════════ */}
-            <div className="flex-1 flex flex-col px-12 py-12 md:px-14">
+            <div className="relative z-20 flex-1 flex flex-col px-12 py-12 md:px-14">
 
               {/* Top nav arrows */}
               <div className="flex justify-end gap-2 mb-auto">
@@ -201,10 +296,7 @@ export default function ScrollServices() {
               </div>
 
               {/* Bottom footer */}
-              <div className="flex items-center justify-between mt-auto pt-6">
-              
-               
-              </div>
+              <div className="flex items-center justify-between mt-auto pt-6" />
             </div>
 
           </div>
