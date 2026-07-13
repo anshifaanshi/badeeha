@@ -9,7 +9,7 @@ const SERVICES = [
     index: "01",
     title: "Nano Ceramic",
     description: "Advanced surface protection technology for a lasting mirror-like finish.",
-    image: "https://images.unsplash.com/photo-1606577924006-27d39b132ae2?w=900&q=80",
+    image: "https://i.postimg.cc/Y21yHBTh/Gemini-Generated-Image-3ehz3t3ehz3t3ehz.png",
     span: "large-left",
   },
   {

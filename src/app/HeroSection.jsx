@@ -2,14 +2,15 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const VIDEOS = ["/carfacelifting.mp4", "/cartransition.mp4","/cartinting.mp4.mp4","/carinterior.mp4.mp4"];
+// Fixed the .mp4.mp4 typos in the array
+const VIDEOS = ["/carfacelifting.mp4", "/cartransition.mp4", "/cartinting.mp4", "/carinterior.mp4"];
 const FADE_MS = 2500;
 const HOLD_MS = 6000;
 
 export default function HeroSection() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [fading, setFading] = useState(false);
-  const videoRefs = useRef([]);
+  const videoRefs = useRef([]); // Removed TypeScript type definitions
   const timerRef = useRef(null);
 
   useEffect(() => {
@@ -145,16 +146,13 @@ export default function HeroSection() {
         }
         .scroll-hint { animation: bounce 2.2s ease-in-out infinite; }
 
-        /* ── Responsive ── */
         .badge-strip { display: flex; gap: 10px; justify-content: center; margin-bottom: 44px; }
         .cta-row     { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-        /* Tablet */
         @media (min-width: 641px) and (max-width: 1024px) {
           .badge-strip { flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
         }
 
-        /* Phone — all phones ≤ 640px wide */
         @media (max-width: 640px) {
           .badge-strip  { flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
           .cta-row      { flex-direction: column; align-items: center; width: 100%; gap: 10px; }
@@ -164,14 +162,12 @@ export default function HeroSection() {
           .badge        { font-size: 0.62rem; padding: 5px 10px; }
         }
 
-        /* Galaxy S8 and very narrow phones ≤ 370px */
         @media (max-width: 370px) {
           .badge-strip  { display: none; }
           .cta-primary,
           .cta-secondary { padding: 12px 16px; font-size: 0.72rem; }
         }
 
-        /* Short phones — landscape or small height */
         @media (max-width: 640px) and (max-height: 700px) {
           .badge-strip { display: none; }
         }
@@ -189,7 +185,6 @@ export default function HeroSection() {
           justifyContent: "center",
         }}
       >
-        {/* VIDEO LAYERS */}
         {VIDEOS.map((src, i) => {
           const isActive = i === activeIdx;
           const opacity = fading ? (isActive ? 0 : 1) : isActive ? 1 : 0;
@@ -210,7 +205,6 @@ export default function HeroSection() {
           );
         })}
 
-        {/* DARK GRADIENT OVERLAY */}
         <div
           aria-hidden="true"
           style={{
@@ -222,7 +216,6 @@ export default function HeroSection() {
           }}
         />
 
-        {/* HERO CONTENT */}
         <div
           style={{
             position: "relative",
@@ -285,7 +278,6 @@ export default function HeroSection() {
             transformation it deserves.
           </p>
 
-          {/* Service badges */}
           <div className="badge-strip anim-fade-in delay-600">
             {["UpHolsery&accessories", "Body polishing","Interior Cleaning", "Tinting",].map(
               (label) => (
@@ -297,7 +289,6 @@ export default function HeroSection() {
             )}
           </div>
 
-          {/* CTA Buttons */}
           <div className="cta-row anim-fade-in delay-800">
             <a href="#services" className="cta-primary">
               Explore Services
@@ -317,7 +308,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* SCROLL HINT */}
         <div
           className="scroll-hint anim-fade-in delay-800"
           aria-hidden="true"

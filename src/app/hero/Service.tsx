@@ -26,7 +26,7 @@ const SERVICES = [
     title: "Car Accessories",
     description: "Bespoke additions to enhance and personalise your driving experience.",
     // Luxury Porsche / premium car accessories angle
-    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1400&q=85&fit=crop",
+    image: "https://i.postimg.cc/zBvTvKGp/Jul-5-2026-10-52-47-AM.png",
   },
   {
     id: 5,
@@ -34,7 +34,7 @@ const SERVICES = [
     title: "PPF / Ceramic Works",
     description: "Ultimate paint protection film and long-lasting ceramic coatings.",
     // PPF vinyl wrap being applied on car panel
-    image: "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=1400&q=85&fit=crop",
+    image: "https://i.postimg.cc/X7SxH1JF/Gemini-Generated-Image-jukf07jukf07jukf.png",
   },
   {
     id: 6,
@@ -42,7 +42,7 @@ const SERVICES = [
     title: "Face Lift",
     description: "Modern aesthetic upgrades and precision body kit styling.",
     // Aggressive sporty car front angle / body kit
-    image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1400&q=85&fit=crop",
+    image: "https://i.postimg.cc/sDs7Gkxc/Gemini-Generated-Image-ty7i5cty7i5cty7i.png",
   },
   {
     id: 7,
@@ -50,7 +50,7 @@ const SERVICES = [
     title: "Upholstery Work",
     description: "Premium leather restoration and custom interior stitching by hand.",
     // Luxury leather car seat close-up stitching
-    image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1400&q=85&fit=crop",
+    image: "https://i.postimg.cc/MKJ27DJY/Gemini-Generated-Image-uecqeguecqeguecq.png",
   },
   {
     id: 8,
@@ -58,7 +58,7 @@ const SERVICES = [
     title: "Nano Ceramic",
     description: "Advanced surface protection technology for a lasting mirror-like finish.",
     // Ultra-glossy mirror-like car paint reflection
-    image: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?w=1400&q=85&fit=crop",
+    image: "https://i.postimg.cc/Y21yHBTh/Gemini-Generated-Image-3ehz3t3ehz3t3ehz.png",
   },
   {
     id: 9,
@@ -66,7 +66,7 @@ const SERVICES = [
     title: "Car Polishing",
     description: "Professional paint correction and gloss enhancement for showroom results.",
     // Polishing/buffing machine being used on car hood
-    image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1400&q=85&fit=crop",
+    image: "https://i.postimg.cc/MGqp9wkd/Chat-GPT-Image-Jul-5-2026-11-16-55-AM.png",
   },
 ];
 
