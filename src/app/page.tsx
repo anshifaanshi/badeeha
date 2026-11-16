@@ -6,7 +6,6 @@ import ScrollServices from './hero/Service';
 import StatsBar from './hero/StatsBar';
 import ServicesGrid from './hero/ServiceGrid';
 import AboutUs from './hero/About';
-import BookingForm from './hero/BookingForm';
 import Footer from './components/Footer';
 import Testimonials from './hero/Testimonials';
 import WhatsAppButton from './components/WhtsappButton';
@@ -22,8 +21,9 @@ export default function Home() {
     <ScrollServices/>
     <ServicesGrid/>
     <AboutUs/>
-    <BookingForm/>
+    
     <Footer/>
     </div>
+    
   );
 }

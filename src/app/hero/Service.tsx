@@ -1,72 +1,147 @@
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
+import Link from "next/link";
 import { useScroll, motion, AnimatePresence } from "framer-motion";
 
 const SERVICES = [
   {
     id: 2,
     index: "02",
+    slug: "interior-cleaning",
     title: "Interior Cleaning",
     description: "Deep sanitization and premium detailing for every surface inside your vehicle.",
-    // Person vacuuming / cleaning car interior
     image: "https://i.postimg.cc/C1QLLK8r/Gemini-Generated-Image-xzkgg1xzkgg1xzkg.png",
   },
   {
     id: 3,
     index: "03",
+    slug: "glass-tinting",
     title: "Glass Tinting",
     description: "Heat rejection and privacy with professionally installed premium films.",
-    // Dark tinted car window close-up
     image: "https://i.postimg.cc/wTJJZK8j/Gemini-Generated-Image-bv1hvzbv1hvzbv1h.png",
   },
   {
     id: 4,
     index: "04",
+    slug: "car-accessories",
     title: "Car Accessories",
     description: "Bespoke additions to enhance and personalise your driving experience.",
-    // Luxury Porsche / premium car accessories angle
     image: "https://i.postimg.cc/zBvTvKGp/Jul-5-2026-10-52-47-AM.png",
   },
   {
     id: 5,
     index: "05",
+    slug: "ppf-ceramic-works",
     title: "PPF / Ceramic Works",
     description: "Ultimate paint protection film and long-lasting ceramic coatings.",
-    // PPF vinyl wrap being applied on car panel
     image: "https://i.postimg.cc/X7SxH1JF/Gemini-Generated-Image-jukf07jukf07jukf.png",
   },
   {
     id: 6,
     index: "06",
+    slug: "face-lift",
     title: "Face Lift",
     description: "Modern aesthetic upgrades and precision body kit styling.",
-    // Aggressive sporty car front angle / body kit
     image: "https://i.postimg.cc/sDs7Gkxc/Gemini-Generated-Image-ty7i5cty7i5cty7i.png",
   },
   {
     id: 7,
     index: "07",
+    slug: "upholstery-work",
     title: "Upholstery Work",
     description: "Premium leather restoration and custom interior stitching by hand.",
-    // Luxury leather car seat close-up stitching
     image: "https://i.postimg.cc/MKJ27DJY/Gemini-Generated-Image-uecqeguecqeguecq.png",
   },
   {
     id: 8,
     index: "08",
+    slug: "nano-ceramic",
     title: "Nano Ceramic",
     description: "Advanced surface protection technology for a lasting mirror-like finish.",
-    // Ultra-glossy mirror-like car paint reflection
     image: "https://i.postimg.cc/Y21yHBTh/Gemini-Generated-Image-3ehz3t3ehz3t3ehz.png",
   },
   {
     id: 9,
     index: "09",
+    slug: "car-polishing",
     title: "Car Polishing",
     description: "Professional paint correction and gloss enhancement for showroom results.",
-    // Polishing/buffing machine being used on car hood
     image: "https://i.postimg.cc/MGqp9wkd/Chat-GPT-Image-Jul-5-2026-11-16-55-AM.png",
+  },
+
+  // ───────── NEW SERVICES (add your image URLs below) ─────────
+  {
+    id: 10,
+    index: "10",
+    slug: "hotel-upholstery",
+    title: "Hotel Upholstery",
+    description: "Durable, elegant upholstery solutions tailored for hotels, lobbies and guest rooms.",
+    image: "https://i.postimg.cc/fytQJQ7L/luxury-lounge-area-hotel-reception.jpg", // ADD IMAGE URL
+  },
+  {
+    id: 11,
+    index: "11",
+    slug: "majlis-work",
+    title: "Majlis Work",
+    description: "Traditional and modern majlis seating crafted with refined comfort and detail.",
+    image: "https://i.postimg.cc/MK5gqT8K/contemporary-house-interior-design-(1).jpg", // ADD IMAGE URL
+  },
+  {
+    id: 12,
+    index: "12",
+    slug: "vehicle-upholstery",
+    title: "Vehicle Upholstery",
+    description: "Custom seat covers, leather finishing and complete interior re-trims for any vehicle.",
+    image: "https://i.postimg.cc/vHYSqsxS/black-interior-details-modern-luxury-car.jpg", // ADD IMAGE URL
+  },
+  {
+    id: 13,
+    index: "13",
+    slug: "car-parking-shade",
+    title: "Car Parking Shade",
+    description: "Strong, weather-resistant parking shades that protect your vehicles from sun and heat.",
+    image: "https://i.postimg.cc/ZqpcY7yv/angled-shot-three-yellow-curved-roofs-city-with-lights-dark-sky.jpg", // ADD IMAGE URL
+  },
+  {
+    id: 14,
+    index: "14",
+    slug: "event-umbrellas",
+    title: "Event Umbrellas",
+    description: "Stylish, sturdy umbrellas and canopies for events, outdoor venues and gatherings.",
+    image: "https://i.postimg.cc/SsVcjwQm/pure-relaxation-luxurious-resort-trawangan-indonesia.jpg", // ADD IMAGE URL
+  },
+  {
+    id: 15,
+    index: "15",
+    slug: "hotel-dining-chairs",
+    title: "Hotel Dining Chairs",
+    description: "Comfortable, long-lasting dining chairs designed for hotels and restaurants.",
+    image: "https://i.postimg.cc/zGWWTLD9/indoor-with-elegant-wooden-dining-table-chairs.jpg", // ADD IMAGE URL
+  },
+  {
+    id: 16,
+    index: "16",
+    slug: "office-chairs",
+    title: "Office Chairs",
+    description: "Ergonomic office chair upholstery and repair for comfort through the working day.",
+    image: "https://i.postimg.cc/ZnCvnnDD/office-chair-still-life.jpg", // ADD IMAGE URL
+  },
+  {
+    id: 17,
+    index: "17",
+    slug: "curtains",
+    title: "Curtains",
+    description: "Custom-made curtains in premium fabrics, designed and fitted to suit your space.",
+    image: "https://i.postimg.cc/PJpNhcP4/stylish-living-room-with-natural-light-curtains-minimalist-design.jpg", // ADD IMAGE URL
+  },
+  {
+    id: 18,
+    index: "18",
+    slug: "sofas",
+    title: "Sofas",
+    description: "Bespoke sofas and sofa re-upholstery built for comfort, style and durability.",
+    image: "https://i.postimg.cc/W3Dk8S0x/Warm-Minimalist-Luxury-Living-Room.png", // ADD IMAGE URL
   },
 ];
 
@@ -101,6 +176,19 @@ function ServiceCard({ service }: { service: (typeof SERVICES)[0] }) {
       <p className="dm-sans text-white/45 font-light italic leading-relaxed text-[clamp(0.9rem,1.5vw,1.05rem)] max-w-sm mb-9">
         {service.description}
       </p>
+
+      {/* View details → service page */}
+      <Link
+        href={`/services/${service.slug}`}
+        className="dm-sans group inline-flex items-center gap-3 self-start text-[11px] tracking-[0.3em] uppercase text-white/70 hover:text-orange-500 transition-colors duration-300"
+      >
+        <span className="border-b border-white/20 group-hover:border-orange-500 pb-1 transition-colors duration-300">
+          View Details
+        </span>
+        <span className="w-9 h-9 rounded-full border border-white/15 group-hover:border-orange-500 flex items-center justify-center transition-all duration-300">
+          →
+        </span>
+      </Link>
     </motion.div>
   );
 }
@@ -118,12 +206,16 @@ function ServiceImage({ service }: { service: (typeof SERVICES)[0] }) {
       transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
       className="absolute inset-0"
     >
-      <img
-        src={service.image}
-        alt={service.title}
-        className="w-full h-full object-cover"
-        style={{ filter: "brightness(0.5) saturate(0.8)" }}
-      />
+      {service.image ? (
+        <img
+          src={service.image}
+          alt={service.title}
+          className="w-full h-full object-cover"
+          style={{ filter: "brightness(0.5) saturate(0.8)" }}
+        />
+      ) : (
+        <div className="w-full h-full" style={{ background: "#0a0a0a" }} />
+      )}
       {/* Left-to-right fade: blends image into left panel */}
       <div
         className="absolute inset-0"

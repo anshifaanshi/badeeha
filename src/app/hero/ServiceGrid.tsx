@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 
 // Same services & descriptions as ScrollServices
 const SERVICES = [
@@ -25,7 +26,7 @@ const SERVICES = [
     index: "03",
     title: "Interior Cleaning",
     description: "Deep sanitization and premium detailing for every surface inside your vehicle.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80",
+    image: "https://i.postimg.cc/W3Dk8S0x/Warm-Minimalist-Luxury-Living-Room.png",
     span: "small",
   },
   {
@@ -33,7 +34,7 @@ const SERVICES = [
     index: "04",
     title: "Glass Tinting",
     description: "Heat rejection and privacy with professionally installed premium films.",
-    image: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=900&q=80",
+    image: "https://i.postimg.cc/sX3LZQSQ/pexels-georgesultan-11877373.jpg",
     span: "small",
   },
   {
@@ -41,7 +42,7 @@ const SERVICES = [
     index: "05",
     title: "PPF / Ceramic Works",
     description: "Ultimate paint protection film and long-lasting ceramic coatings.",
-    image: "https://images.unsplash.com/photo-1616422285623-13ff0162193c?w=900&q=80",
+    image: "https://i.postimg.cc/brWLLsGT/pexels-tima-miroshnichenko-6873123.jpg",
     span: "large-right",
   },
   {
@@ -49,7 +50,7 @@ const SERVICES = [
     index: "06",
     title: "Face Lift",
     description: "Modern aesthetic upgrades — new headlights, bumpers, and grilles for a refreshed exterior look.",
-    image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=900&q=80",
+    image: "https://i.postimg.cc/brWLLsGT/pexels-tima-miroshnichenko-6873123.jpg",
     span: "half",
   },
   {
@@ -60,6 +61,20 @@ const SERVICES = [
     image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80",
     span: "half",
   },
+];
+
+// Extra (secondary) services — shown below the main grid
+// Add an image URL in each `image` field (empty = dark placeholder)
+const EXTRA_SERVICES = [
+  { slug: "hotel-upholstery",    title: "Hotel Upholstery",    description: "Durable, elegant upholstery for hotels, lobbies and guest rooms.", image: "" },
+  { slug: "majlis-work",         title: "Majlis Work",         description: "Traditional and modern majlis seating crafted with refined comfort.", image: "" },
+  { slug: "vehicle-upholstery",  title: "Vehicle Upholstery",  description: "Custom seat covers, leather finishing and complete interior re-trims.", image: "" },
+  { slug: "car-parking-shade",   title: "Car Parking Shade",   description: "Weather-resistant parking shades that protect from sun and heat.", image: "" },
+  { slug: "event-umbrellas",     title: "Event Umbrellas",     description: "Stylish, sturdy umbrellas and canopies for events and outdoor venues.", image: "" },
+  { slug: "hotel-dining-chairs", title: "Hotel Dining Chairs", description: "Comfortable, long-lasting dining chairs for hotels and restaurants.", image: "" },
+  { slug: "office-chairs",       title: "Office Chairs",       description: "Ergonomic office chair upholstery and repair.", image: "" },
+  { slug: "curtains",            title: "Curtains",            description: "Custom-made curtains in premium fabrics, fitted to your space.", image: "" },
+  { slug: "sofas",               title: "Sofas",               description: "Bespoke sofas and re-upholstery built for comfort and durability.", image: "" },
 ];
 
 export default function ServicesGrid() {
@@ -171,6 +186,92 @@ export default function ServicesGrid() {
           margin-top: 10px;
         }
 
+        /* ── Extra services (secondary) ── */
+        .sx-wrap {
+          max-width: 1400px;
+          margin: 72px auto 0;
+        }
+        .sx-head {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          margin-bottom: 8px;
+        }
+        .sx-head span {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 0.5em;
+          text-transform: uppercase;
+          color: #ff6600;
+          font-weight: 700;
+          white-space: nowrap;
+        }
+        .sx-head::after {
+          content: "";
+          flex: 1;
+          height: 1px;
+          background: rgba(0,0,0,0.12);
+        }
+        .sx-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          column-gap: 48px;
+        }
+        .sx-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          padding: 16px 0;
+          border-bottom: 1px solid rgba(0,0,0,0.1);
+          text-decoration: none;
+          transition: padding-left 0.3s ease;
+        }
+        .sx-item:hover { padding-left: 8px; }
+        .sx-thumb {
+          width: 84px;
+          height: 64px;
+          flex-shrink: 0;
+          overflow: hidden;
+          background: #111;
+        }
+        .sx-thumb img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          filter: brightness(0.85);
+          transition: transform 0.5s ease, filter 0.4s ease;
+        }
+        .sx-item:hover .sx-thumb img { transform: scale(1.1); filter: brightness(1); }
+        .sx-body { flex: 1; min-width: 0; }
+        .sx-title {
+          font-family: 'Bebas Neue', sans-serif;
+          font-size: 1.5rem;
+          line-height: 1;
+          color: #111;
+          text-transform: uppercase;
+          transition: color 0.3s ease;
+        }
+        .sx-desc {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 12px;
+          font-weight: 300;
+          font-style: italic;
+          color: rgba(0,0,0,0.45);
+          margin-top: 6px;
+          line-height: 1.5;
+        }
+        .sx-arrow {
+          font-family: 'DM Sans', sans-serif;
+          color: rgba(0,0,0,0.3);
+          transition: color 0.3s ease, transform 0.3s ease;
+          flex-shrink: 0;
+        }
+        .sx-item:hover .sx-title,
+        .sx-item:hover .sx-arrow { color: #ff6600; }
+        .sx-item:hover .sx-arrow { transform: translateX(4px); }
+
         @media (max-width: 860px) {
           .sg-grid {
             grid-template-columns: 1fr 1fr;
@@ -183,6 +284,11 @@ export default function ServicesGrid() {
           .sg-card-large-right { grid-column: 2; grid-row: auto; height: 220px; }
           .sg-card-half-left   { grid-column: 1; grid-row: auto; height: 220px; }
           .sg-card-half-right  { grid-column: 2; grid-row: auto; height: 220px; }
+
+          .sx-grid { grid-template-columns: 1fr 1fr; column-gap: 32px; }
+        }
+        @media (max-width: 520px) {
+          .sx-grid { grid-template-columns: 1fr; }
         }
       `}} />
 
@@ -277,6 +383,25 @@ export default function ServicesGrid() {
           </div>
         </div>
 
+      </div>
+
+      {/* Extra services */}
+      <div className="sx-wrap">
+        <div className="sx-head">
+          <span>More Services</span>
+        </div>
+        <div className="sx-grid">
+          {EXTRA_SERVICES.map((s) => (
+            <Link key={s.slug} href={`/services/${s.slug}`} className="sx-item">
+              
+              <div className="sx-body">
+                <h4 className="sx-title">{s.title}</h4>
+                <p className="sx-desc">{s.description}</p>
+              </div>
+              <span className="sx-arrow">→</span>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
