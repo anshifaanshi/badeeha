@@ -83,19 +83,16 @@ export default function Navbar() {
           white-space: nowrap;
           min-width: 0;
         }
-        .nav-logo-icon {
-          width: clamp(24px, 6vw, 28px);
-          height: clamp(24px, 6vw, 28px);
-          background: linear-gradient(135deg, #f97316, #fb923c);
-          border-radius: clamp(6px, 1.5vw, 8px);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: clamp(0.6rem, 1.8vw, 0.72rem);
-          font-weight: 700;
-          color: #fff;
+        .nav-logo-img {
+          width: clamp(40px, 10vw, 52px);
+          height: clamp(40px, 10vw, 52px);
+          border-radius: 50%;
+          object-fit: cover;
+          display: block;
           flex-shrink: 0;
-          box-shadow: 0 2px 10px rgba(249,115,22,0.45);
+          background: #fff;
+          border: 2px solid rgba(255,255,255,0.7);
+          box-shadow: 0 2px 12px rgba(0,0,0,0.3);
         }
 
         /* ── DESKTOP LINKS ── */
@@ -318,6 +315,10 @@ export default function Navbar() {
           .nav-logo {
             font-size: 0.82rem;
           }
+          .nav-logo-img {
+            width: 36px;
+            height: 36px;
+          }
           .hamburger {
             width: 34px;
             height: 34px;
@@ -345,7 +346,11 @@ export default function Navbar() {
         <div className={`nav-pill${scrolled ? " scrolled" : ""}`}>
 
           <a href="#home" className="nav-logo" aria-label="Adeeha Home">
-            <span className="nav-logo-icon" aria-hidden="true">BA</span>
+            <img
+              src="https://i.postimg.cc/1XnwhkHF/badeeha-logo.png"
+              alt="BAdeeha logo"
+              className="nav-logo-img"
+            />
             BAdeeha
           </a>
 
@@ -355,7 +360,7 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <a href="#contact" className="nav-cta">Book Now</a>
+          <a href="/contact" className="nav-cta">Contact Now</a>
 
           <button
             className={`hamburger${menuOpen ? " open" : ""}`}

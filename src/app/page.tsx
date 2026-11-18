@@ -6,7 +6,7 @@ import ScrollServices from './hero/Service';
 import StatsBar from './hero/StatsBar';
 import ServicesGrid from './hero/ServiceGrid';
 import AboutUs from './hero/About';
-import Footer from './components/Footer';
+
 import Testimonials from './hero/Testimonials';
 import WhatsAppButton from './components/WhtsappButton';
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
     <ServicesGrid/>
     <AboutUs/>
     
-    <Footer/>
+  
     </div>
     
   );

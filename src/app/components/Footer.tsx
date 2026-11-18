@@ -116,14 +116,15 @@ export default function Footer() {
 
         {/* CTA */}
         <div className="flex justify-center mb-16">
-          <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="dm-sans inline-flex items-center px-8 py-4 rounded-full border border-orange-500 text-orange-500 text-[11px] tracking-[0.3em] uppercase hover:bg-orange-500 hover:text-black transition-all duration-300"
-          >
-            Chat on WhatsApp
-          </a>
+         
+<a
+  href="https://wa.me/97452037373"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="dm-sans inline-flex items-center px-8 py-4 rounded-full border border-orange-500 text-orange-500 text-[11px] tracking-[0.3em] uppercase hover:bg-orange-500 hover:text-black transition-all duration-300"
+>
+  Chat on WhatsApp
+</a>
         </div>
 
         {/* Bottom bar */}

@@ -331,14 +331,18 @@ export default function ContactPage() {
             {...reveal}
             className="relative overflow-hidden rounded-2xl aspect-[16/10] md:aspect-[16/8] shadow-2xl shadow-black/20 mb-12"
           >
-            <iframe
-              title="Our location"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&output=embed`}
-              className="absolute inset-0 w-full h-full border-0"
-              style={{ filter: "grayscale(0.85) contrast(1.05)" }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+           
+<iframe
+  title="Our location"
+  src={`https://maps.google.com/maps?q=${encodeURIComponent(
+    "Badeeha Upholstery & Car Accessories & Garage, Building #297, Zone, 50 Street Number 351, Doha, Qatar"
+  )}&output=embed`}
+  className="absolute inset-0 w-full h-full border-0"
+  style={{ filter: "grayscale(0.85) contrast(1.05)" }}
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+/>
+
           </motion.div>
 
           <motion.div
